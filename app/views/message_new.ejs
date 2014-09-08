@@ -1,0 +1,22 @@
+<% include _header %>
+
+<% if (success) { %>
+	<p>Request successful</p>
+<% } %>
+
+<% if (failure) { %>
+	<p>Request failed</p>
+<% } %>
+
+<form action="/messages" method="POST">
+	<input name="from" type="email" placeholder="from" />
+	<input name="to[]" type="email" placeholder="to" />
+	<input name="subject" type="email" placeholder="subject" />
+
+	<textarea name="textBody" placeholder="text body"></textarea>
+	<textarea name="htmlBody" placeholder="html body"></textarea>
+
+	<input type="submit" value="Send" />
+</form>
+
+<% include _footer %>

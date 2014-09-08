@@ -11,6 +11,20 @@
 $ npm install
 ```
 
+### Configuration
+
+Requires the following environment variables:
+
+- `MAILER_SERVICE_URL` - the base URL of the service (with no trailing slash)
+- `MAILER_SERVICE_TOKEN` - authorization token for the service
+
+Optionally, to disable debug output, etc.:
+
+- `NODE_ENV` - set to `production`
+
+`MAILER_SERVICE_TOKEN` must match the `AUTHORIZATION_TOKEN` on your instance of
+the [mailer-service](//github.com/billinghamj/mailer-service#configuration).
+
 ## Running
 
 ```bash

@@ -17,10 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 routes(app);
 
-app.all('*', function (req, res) {
-	res.status(404).end();
-});
-
 module.exports = app;
 
 /* istanbul ignore if : not used during unit testing */

@@ -1,63 +1,65 @@
 <% include _header %>
 
 <div class="row">
-	<% if (success) { %>
-		<div class="alert alert-success">Request successful</div>
-	<% } %>
+	<div class="col-sm-12">
+		<% if (success) { %>
+			<div class="alert alert-success">Request successful</div>
+		<% } %>
 
-	<% if (failure) { %>
-		<div class="alert alert-danger">Request failed</div>
-	<% } %>
+		<% if (failure) { %>
+			<div class="alert alert-danger">Request failed</div>
+		<% } %>
 
-	<h1>Send a message</h1>
+		<h1>Send a message</h1>
 
-	<form class="form-horizontal" action="/messages" method="POST">
-		<div class="form-group">
-			<label for="form_from" class="col-sm-2 control-label">From</label>
+		<form class="form-horizontal" action="/messages" method="POST">
+			<div class="form-group">
+				<label for="form_from" class="col-sm-2 control-label">From</label>
 
-			<div class="col-sm-10">
-				<input name="from" id="form_from" type="email" class="form-control" />
+				<div class="col-sm-10">
+					<input name="from" id="form_from" type="email" class="form-control" />
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<label for="form_to" class="col-sm-2 control-label">To</label>
+			<div class="form-group">
+				<label for="form_to" class="col-sm-2 control-label">To</label>
 
-			<div class="col-sm-10">
-				<input name="to[]" id="form_to" type="email" class="form-control" />
+				<div class="col-sm-10">
+					<input name="to[]" id="form_to" type="email" class="form-control" />
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<label for="form_subject" class="col-sm-2 control-label">Subject</label>
+			<div class="form-group">
+				<label for="form_subject" class="col-sm-2 control-label">Subject</label>
 
-			<div class="col-sm-10">
-				<input name="subject" id="form_subject" type="text" class="form-control" />
+				<div class="col-sm-10">
+					<input name="subject" id="form_subject" type="text" class="form-control" />
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<label for="form_textBody" class="col-sm-2 control-label">Text Body</label>
+			<div class="form-group">
+				<label for="form_textBody" class="col-sm-2 control-label">Text Body</label>
 
-			<div class="col-sm-10">
-				<textarea name="textBody" id="form_textBody" class="form-control"></textarea>
+				<div class="col-sm-10">
+					<textarea name="textBody" id="form_textBody" class="form-control"></textarea>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<label for="form_htmlBody" class="col-sm-2 control-label">HTML Body</label>
+			<div class="form-group">
+				<label for="form_htmlBody" class="col-sm-2 control-label">HTML Body</label>
 
-			<div class="col-sm-10">
-				<textarea name="htmlBody" id="form_htmlBody" class="form-control"></textarea>
+				<div class="col-sm-10">
+					<textarea name="htmlBody" id="form_htmlBody" class="form-control"></textarea>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary">Send</button>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Send</button>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>
 
 <% include _footer %>

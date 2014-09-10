@@ -37,27 +37,42 @@ test('new message page shows', function (t) {
 });
 
 test('message creation fails correctly', function (t) {
-	t.plan(3);
+	t.plan(12); // 9 are from setupTestServer
 
-	request(app)
-		.post('/messages')
-		.expect(302)
-		.expect('Location', '/messages/new?failure')
-		.end(t.error);
+	var server = setupTestServer(t,
+		function (request, response) {
+			response.writeHead(400);
+			response.end();
+		}, function () {
+			var c = 0;
 
-	request(app)
-		.post('/messages')
-		.send('s')
-		.expect(302)
-		.expect('Location', '/messages/new?failure')
-		.end(t.error);
+			function end(err, res) {
+				t.error(err);
 
-	request(app)
-		.post('/messages')
-		.send('from=b&to[]=s&subject=a')
-		.expect(302)
-		.expect('Location', '/messages/new?failure')
-		.end(t.error);
+				if (++c == 3)
+					server.close();
+			}
+
+			request(app)
+				.post('/messages')
+				.expect(302)
+				.expect('Location', '/messages/new?failure')
+				.end(end);
+
+			request(app)
+				.post('/messages')
+				.send('s')
+				.expect(302)
+				.expect('Location', '/messages/new?failure')
+				.end(end);
+
+			request(app)
+				.post('/messages')
+				.send('from=b&to[]=s&subject=a')
+				.expect(302)
+				.expect('Location', '/messages/new?failure')
+				.end(end);
+		});
 });
 
 // will generate 3 assertions for each request it handles

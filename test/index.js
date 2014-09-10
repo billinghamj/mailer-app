@@ -75,6 +75,36 @@ test('message creation fails correctly', function (t) {
 		});
 });
 
+test('message creation succeeds', function (t) {
+	var expectedObject = {
+		'from': 'no-reply@example.com',
+		'to': ['user@example.net'],
+		'subject': 'a subject',
+		'textBody': 'such gripping content'
+	};
+
+	t.plan(5);
+
+	var server = setupTestServer(t,
+		function (request, response, body) {
+			t.deepEqual(JSON.parse(body), expectedObject);
+
+			response.writeHead(201);
+			response.end();
+		}, function () {
+			request(app)
+				.post('/messages')
+				.send('from=no-reply%40example.com&to[]=user%40example.net&subject=a%20subject&textBody=such%20gripping%20content')
+				.expect(302)
+				.expect('Location', '/messages/new?success')
+
+				.end(function (err, res) {
+					t.error(err);
+					server.close();
+				});
+		});
+});
+
 // will generate 3 assertions for each request it handles
 function setupTestServer(t, handler, callback) {
 	var token = 'arbitrary-non-existing-token';
